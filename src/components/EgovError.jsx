@@ -4,11 +4,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 function EgovError() {
     const navigate = useNavigate();
 	const location = useLocation();    
-    let errormessage;
-    if (location.state === null) {
+    
+    let errormessage = location.state?.msg || "알 수 없는 에러가 발생했습니다.";
+
+    if(errormessage === "No message available") {
         errormessage = "알 수 없는 에러가 발생했습니다.";
-    } else {
-        errormessage = location.state.msg || "알 수 없는 에러가 발생했습니다.";
     }
 
     
