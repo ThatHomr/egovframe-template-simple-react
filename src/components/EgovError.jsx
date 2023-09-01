@@ -4,13 +4,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 function EgovError() {
     const navigate = useNavigate();
 	const location = useLocation();    
-
-    let errormessage = location.state.msg || "알 수 없는 에러가 발생했습니다.";
-
-    if(errormessage === "No message available") {
+    let errormessage;
+    if (location.state === null) {
         errormessage = "알 수 없는 에러가 발생했습니다.";
+    } else {
+        errormessage = location.state.msg || "알 수 없는 에러가 발생했습니다.";
     }
 
+    
     const goBack = () => {
       navigate(-1, { replace: true });// 이전 URL을 현재 페이지 인식하고 재 로딩하는 코드.
     }
